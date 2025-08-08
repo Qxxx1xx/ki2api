@@ -17,6 +17,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY app.py token_reader.py entrypoint.sh ./
 
+# Fix CRLF issue in entrypoint.sh
+RUN sed -i 's/\r$//' entrypoint.sh
+
 # Make entrypoint executable
 RUN chmod +x entrypoint.sh
 

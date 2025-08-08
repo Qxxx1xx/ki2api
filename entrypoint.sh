@@ -28,7 +28,7 @@ fi
 if [ -z "$KIRO_ACCESS_TOKEN" ] || [ -z "$KIRO_REFRESH_TOKEN" ]; then
     echo "⚠️  环境变量未设置，尝试从.env文件加载..."
     if [ -f ".env" ]; then
-        export $(cat .env | xargs)
+        export $(grep -v '^#' .env | xargs)
         echo "✅ 已从.env文件加载token"
     else
         echo "❌ 未找到token配置，服务可能无法正常工作"
